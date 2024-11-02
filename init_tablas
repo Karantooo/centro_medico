@@ -1,0 +1,20 @@
+CREATE TABLE trabajador(
+	rut VARCHAR PRIMARY KEY,
+	nombre VARCHAR
+);
+
+CREATE TABLE medico(
+	rut VARCHAR PRIMARY KEY, 
+	especialidad VARCHAR,
+
+	FOREIGN KEY (rut) REFERENCES trabajador(rut)
+);
+
+CREATE TABLE cita(
+	id_cita SERIAL PRIMARY KEY,
+	duracion_minutos INTEGER,
+	rut_doctor VARCHAR,
+	FOREIGN KEY (rut_doctor) REFERENCES medico(rut)
+	
+);
+
