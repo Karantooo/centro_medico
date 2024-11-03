@@ -23,10 +23,15 @@ CREATE TABLE cita (
     id_cita SERIAL PRIMARY KEY,
     duracion_minutos INTEGER,
     rut_doctor VARCHAR,
-    rut_paciente VARCHAR,
+    rut_paciente VARCHAR(20),
+	estado VARCHAR(20),
+	
     FOREIGN KEY (rut_doctor) REFERENCES medico(rut),
-    FOREIGN KEY (rut_paciente) REFERENCES paciente(rut)
+    FOREIGN KEY (rut_paciente) REFERENCES paciente(rut),
+
+	CONSTRAINT estado_cita CHECK (estado IN ('Confirmado', 'No confirmado', 'Cancelada'))
 );
+
 
 CREATE TABLE usuario (
     nombre VARCHAR PRIMARY KEY,
