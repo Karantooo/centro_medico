@@ -17,7 +17,7 @@ CREATE TABLE administrativo (
 CREATE TABLE paciente (
     rut VARCHAR PRIMARY KEY,
     nombre VARCHAR
-);
+);a
 
 CREATE TABLE cita (
     id_cita SERIAL PRIMARY KEY,
@@ -52,4 +52,8 @@ CREATE TABLE usuario_paciente (
     FOREIGN KEY (rut) REFERENCES paciente(rut),
     FOREIGN KEY (nombre) REFERENCES usuario(nombre)
 );
+
+
+
+
 
