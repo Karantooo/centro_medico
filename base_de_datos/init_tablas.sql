@@ -17,20 +17,19 @@ CREATE TABLE administrativo (
 CREATE TABLE paciente (
     rut VARCHAR PRIMARY KEY,
     nombre VARCHAR
-);a
+);
 
 CREATE TABLE cita (
     id_cita SERIAL PRIMARY KEY,
-    duracion_minutos INTEGER,
     rut_doctor VARCHAR,
     rut_paciente VARCHAR(20),
 	estado VARCHAR(20),
-	fecha TIMESTAMP,
-	
+	fecha_inicio TIMESTAMP,
+	fecha_fin TIMESTAMP,
     FOREIGN KEY (rut_doctor) REFERENCES medico(rut),
     FOREIGN KEY (rut_paciente) REFERENCES paciente(rut),
 
-	CONSTRAINT estado_cita CHECK (estado IN ('Confirmado', 'No confirmado', 'Cancelada', 'Disponible'))
+	CONSTRAINT estado_cita CHECK (estado IN ('Confirmado', 'No confirmado', 'Cancelada'))
 );
 
 
@@ -54,6 +53,11 @@ CREATE TABLE usuario_paciente (
 );
 
 
-
+CREATE TABLE disponibilidad_medico(
+	rut_medico VARCHAR,
+	inicio_disponibilidad TIMESTAMP,
+	fin_disponibilidad TIMESTAMP,
+	FOREIGN KEY (rut_medico) REFERENCES medico(rut)
+);
 
 
