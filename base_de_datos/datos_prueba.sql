@@ -87,3 +87,6 @@ INSERT INTO usuario_paciente (nombre, rut) VALUES
 ('ricardomartinez', '99887766-5'),
 ('elenarodriguez', '22334466-0'),
 ('marcodiaz', '77665544-8');
+
+
+
