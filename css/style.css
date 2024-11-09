@@ -82,3 +82,37 @@
   font-size: large;
   text-align:center;
 }
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+#time-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Una columna por día */
+  grid-auto-rows: minmax(50px, auto); /* Ajusta la altura de cada fila */
+  gap: 5px;
+  width: 100%;
+  max-width: 1200px; /* Ajusta según el ancho máximo deseado */
+  margin-top: 20px;
+  text-align: center;
+}
+
+.time-block {
+  padding: 10px;
+  background-color: lightgray;
+  cursor: pointer;
+  text-align: center;
+}
+
+.time-block.selected {
+  background-color: lightgreen;
+}
+
+
+.time-block.selected {
+  background-color: lightgreen;
+}
