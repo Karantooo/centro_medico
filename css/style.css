@@ -45,8 +45,40 @@
   left: 850px;
 }
 .imagen_fondo{
-  background-image: url("fondo_citas.jpg");
+  background-image: url("../../../Centro medico/centro_medico/css/fondo_citas.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+.parrafo1 {
+  position: absolute;
+  top: 500px;
+  left: 500px;
+}
+.contenedor{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo_udec{
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  max-width: 100%;
+  max-height: 100%;
+}
+.calendario{
+  position: absolute;
+  top: 200px;
+  left: 300px;
+}
+.letra{
+  font: bold 90% monospace;
+  font-size: large;
+  text-align:center;
 }
