@@ -25,6 +25,13 @@ header {
     border-bottom: 2px solid #ccc;
 }
 
+.imagen_fondo{
+    background-image: url("../css/fondo_citas.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
 header img {
     height: 50px;
 }
