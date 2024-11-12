@@ -122,8 +122,9 @@ body {
   background-color: white;
   border: 1px solid black;
   position: absolute;
-  top: 200px;
-  left: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .centrar{
   text-align: center;
