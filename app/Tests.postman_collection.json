@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "b47930ae-581f-46d1-97eb-54bb97fb4e3a",
+		"name": "Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39622666"
+	},
+	"item": [
+		{
+			"name": "busqueda Cita ID = 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/Cita/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"Cita",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Medico con Especialidad",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/busqueda/especialidad/Cardiología",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"busqueda",
+						"especialidad",
+						"Cardiología"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Medico con Rut",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/busqueda/rut/11223344-5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"busqueda",
+						"rut",
+						"11223344-5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agendado de Cita",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rut_doctor\": \"12345678-9\",\r\n    \"rut_paciente\": \"11122334-5\",\r\n    \"estado\": \"Confirmado\",\r\n    \"fecha_inicio\": \"2024-11-15 10:00:00\",\r\n    \"fecha_fin\": \"2024-11-15 10:30:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/Cita",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"Cita"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mostrar todos los médicos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/busqueda/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"busqueda",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Setear disponibilidad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rut_medico\": \"12345678-9\",\r\n    \"inicio_disponibilidad\": \"2024-11-15 08:00:00\",\r\n    \"fin_disponibilidad\": \"2024-11-15 12:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/disponibilidad",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"disponibilidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Disponibilidad con RUT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/disponibilidad/22334455-6",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"disponibilidad",
+						"22334455-6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
