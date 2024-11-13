@@ -95,6 +95,10 @@ h2 {
     color: #333;
 }
 
+.button-group button.selected {
+    background-color: #85C1E9;
+}
+
 /* Botones de convenios */
 .convenios {
     display: flex;
@@ -112,6 +116,9 @@ h2 {
     cursor: pointer;
 }
 
+.convenios button.selected {
+    background-color: blue;
+}
 /* Footer */
 footer {
     background-color: #ffffff;
