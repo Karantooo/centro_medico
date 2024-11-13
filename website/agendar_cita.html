@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Agendar hora</title>
     <link rel="stylesheet" href="../css/style.css">
 
 </head>
@@ -11,18 +11,37 @@
     <div class="contenedor">
         <img src="../css/logo_udec.png" alt="Error" class ="logo_udec">
     </div>
-    <header class="div1 letra">
-        <p> Usted a seleccionado al Medico: " "</p>
-    </header>
-    <nav class="letra">
-        <p> Debera seleccionar una fecha en el calendario, despues apareceran todas las horas disponibles</p>
-    </nav>
+    <div class="contenedor2 letra">
+        <p> Seleccione una fecha en el calendario y luego una hora</p>
+    </div>
+
+    <div id ="horas" class="contenedor_horas">
+
+    </div>
 
 
-    <label class="calendario">
+    <label class="calendario" id="fecha" onchange="generarBotones()">
         <input type="date">
     </label>
 
+    <script>
 
+        function generarBotones() {
+            const contenedor = document.getElementById("horas");
+            contenedor.innerHTML = "";
+            for (let i = 1; i <=30; i++) {
+                const boton = document.createElement("button");
+                boton.textContent = `Botón ${i}`;
+
+                // Asignar una función única a cada botón
+                boton.onclick = function() {
+                };
+
+                // Agregar el botón al contenedor
+                contenedor.appendChild(boton);
+            }
+        }
+
+    </script>
 </body>
 </html>
