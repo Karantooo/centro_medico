@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/cambiar_html.js"></script>
     <title>Centro Médico</title>
 </head>
 <body class = "imagen_fondo">
@@ -14,7 +15,7 @@
                 <img src="logo.png" alt="Logo" style="height: 50px;">
             </div>
             <button>Reservar hora</button>
-            <button>Acceder</button>
+            <button onclick="cambiar_html_medicos('medicos.html')">Acceder</button>
             <input type="text" placeholder="Buscar...">
         </div>
     </header>
@@ -25,25 +26,31 @@
         <section>
             <h1>Especialidades:</h1>
             <div class ="button-group">
-                <button>Ginecología y Obstetricia</button>
-                <button>Traumatología Adulto</button>
-                <button>Medicina General</button>
-                <button>Cirugía General</button>
-                <button>Pediatría</button>
-                <button>Centro Dental</button>
-                <button>Psicología</button>
-                <button>Cardiología</button>
+                <button onclick="selecionar_especialidad(this)">Ginecología y Obstetricia</button>
+                <button onclick="selecionar_especialidad(this)">Traumatología Adulto</button>
+                <button onclick="selecionar_especialidad(this)">Medicina General</button>
+                <button onclick="selecionar_especialidad(this)">Cirugía General</button>
+                <button onclick="selecionar_especialidad(this)">Pediatría</button>
+                <button onclick="selecionar_especialidad(this)">Centro Dental</button>
+                <button onclick="selecionar_especialidad(this)">Psicología</button>
+                <button onclick="selecionar_especialidad(this)">Cardiología</button>
             </div>
         </section>
 
+        <div id="mensaje-error" class="mensaje-error">
+            <div class="mensaje-error-content">
+                <h1>No has seleccionado ninguna especialidad o convenio</h1>
+                <button onclick="cerrar_error()">Cerrar</button>
+            </div>
+        </div>
         <!-- Convenios -->
         <section>
             <h2>Convenios:</h2>
             <div class = "convenios">
-                <button>Convenio UDEC</button>
-                <button>Convenio Fonasa</button>
-                <button>Convenio Isapre</button>
-                <button>Convenio Empresas</button>
+                <button onclick="selecionar_convenio(this)">Convenio UDEC</button>
+                <button onclick="selecionar_convenio(this)">Convenio Fonasa</button>
+                <button onclick="selecionar_convenio(this)">Convenio Isapre</button>
+                <button onclick="selecionar_convenio(this)">Convenio Empresas</button>
             </div>
         </section>
     </main>
