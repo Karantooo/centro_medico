@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "b47930ae-581f-46d1-97eb-54bb97fb4e3a",
 		"name": "Tests",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "39622666"
 	},
 	"item": [
@@ -11,21 +11,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8000/Cita/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"Cita",
-						"1"
-					]
-				}
+				"url": "http://127.0.0.1:8000/Cita/1"
 			},
 			"response": []
 		},
@@ -46,22 +32,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/busqueda/especialidad/Cardiología",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"busqueda",
-						"especialidad",
-						"Cardiología"
-					]
-				}
+				"url": "http://127.0.0.1:8000/busqueda/especialidad/Cardiología"
 			},
 			"response": []
 		},
@@ -70,22 +41,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8000/busqueda/rut/11223344-5",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"busqueda",
-						"rut",
-						"11223344-5"
-					]
-				}
+				"url": "http://127.0.0.1:8000/busqueda/rut/11223344-5"
 			},
 			"response": []
 		},
@@ -103,20 +59,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/Cita",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"Cita"
-					]
-				}
+				"url": "http://127.0.0.1:8000/Cita"
 			},
 			"response": []
 		},
@@ -125,21 +68,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8000/busqueda/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"busqueda",
-						""
-					]
-				}
+				"url": "http://127.0.0.1:8000/busqueda/"
 			},
 			"response": []
 		},
@@ -157,20 +86,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/disponibilidad",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"disponibilidad"
-					]
-				}
+				"url": "http://127.0.0.1:8000/disponibilidad"
 			},
 			"response": []
 		},
@@ -179,21 +95,34 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8000/disponibilidad/22334455-6",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"disponibilidad",
-						"22334455-6"
-					]
-				}
+				"url": "http://127.0.0.1:8000/disponibilidad/22334455-6"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las citas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/Cita/"
+			},
+			"response": []
+		},
+		{
+			"name": "Cambiar estado cita",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id_cita\": 123,\r\n  \"estado\": \"Confirmada\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/Cita/"
 			},
 			"response": []
 		}

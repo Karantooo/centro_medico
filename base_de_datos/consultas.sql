@@ -84,3 +84,13 @@ WHERE
 --- Insertar disponibilidad
 INSERT INTO disponibilidad_medico (rut_medico, inicio_disponibilidad, fin_disponibilidad) VALUES
 ('12345678-9', '2024-11-06 07:00:00', '2024-11-06 09:00:00'); 
+
+
+--- Obtener todos los datos de las citas 
+SELECT * FROM cita;
+
+
+--- Actualizar confirmacion
+UPDATE cita
+SET estado = 'Confirmado'
+WHERE id_cita = 18;
