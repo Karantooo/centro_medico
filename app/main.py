@@ -24,6 +24,10 @@ class Cita(BaseModel):
     fecha_inicio: str  
     fecha_fin: str    
 
+class ActualizarEstadoCita(BaseModel):
+    id_cita: int
+    estado: str
+
 while True:
     try:   
         conn = psycopg2.connect(host='localhost', database='postgres', user='postgres', password='password123', cursor_factory=RealDictCursor)
@@ -38,8 +42,8 @@ while True:
 #Testeado
 # User Story: [US 1] Yo como paciente quiero poder agendar una cita, para ser atendido por un médico.
 @app.get("/Cita/{id}", status_code=status.HTTP_200_OK) 
-def obtenerCita(id):
-    cursor.execute(f"""SELECT c.id_cita, c.rut_doctor, c.rut_paciente, c.estado, c.fecha_inicio, c.fecha_fin, t.nombre 
+def obtenerCita(id: str):
+    cursor.execute("""SELECT c.id_cita, c.rut_doctor, c.rut_paciente, c.estado, c.fecha_inicio, c.fecha_fin, t.nombre 
                    AS nombre_medico, m.especialidad 
                    AS especialidad_medico, p.nombre 
                    AS nombre_paciente 
@@ -47,9 +51,32 @@ def obtenerCita(id):
                    JOIN medico m ON c.rut_doctor = m.rut 
                    JOIN trabajador t ON m.rut = t.rut 
                    JOIN paciente p ON c.rut_paciente = p.rut	
-                   WHERE id_cita = {id}""")
+                   WHERE id_cita = %s""", (id,))
     
     return {"data": cursor.fetchall()}
+
+#Testeado
+@app.get("/Cita", status_code=status.HTTP_200_OK)
+def obtenerCitas():
+    cursor.execute("SELECT * FROM cita")
+    return {"data": cursor.fetchall()}
+
+@app.patch("/Cita", status_code=status.HTTP_200_OK)
+def actualizarEstadoCita(datos : ActualizarEstadoCita):
+    try:
+        cursor.execute("""
+            UPDATE cita
+            SET estado = %s
+            WHERE id_cita = %s""", (datos.estado, datos.id_cita))
+        
+        conn.commit()
+        return {"Message": "Dato cambiado con éxito"}
+
+    except psycopg2.errors.CheckViolation:
+        raise HTTPException(
+            status_code=400,
+            detail="El estado de la cita no es válido"
+        )
 
 #Testeado
 @app.post("/Cita", status_code=status.HTTP_201_CREATED)
@@ -68,6 +95,8 @@ def agendarCitas(cita: Cita):
         raise HTTPException(status_code=400, detail="Error en la operación: " + str(e))
     
 
+# hacer un update de citas
+# hacer un get de todas las citas
 
 # User Story: [US 4]Como paciente quiero poder buscar médicos, para ser atendido por un especialista de manera rápida y eficiente.
 #Testeado
@@ -87,8 +116,8 @@ def mostrarMedicos():
 
 #Testeado
 @app.get("/busqueda/especialidad/{especialidad}", status_code=status.HTTP_200_OK)
-def mostrarMedicosEspecialidad(especialidad):
-    cursor.execute(f"""
+def mostrarMedicosEspecialidad(especialidad: str):
+    cursor.execute("""
         SELECT 
             t.rut,
             t.nombre,
@@ -98,15 +127,15 @@ def mostrarMedicosEspecialidad(especialidad):
         JOIN 
             medico m ON t.rut = m.rut
         WHERE 
-            m.especialidad = '{especialidad}'""")
+            m.especialidad = %s""", (especialidad,))
     return {"data": cursor.fetchall()}
 
 #Testeado
 @app.get("/busqueda/rut/{rut}", status_code=status.HTTP_200_OK) # {id}: path parameter
-def mostrarMedico(rut):
+def mostrarMedico(rut: str):
     #if id != 1:
     #    raise HTTPException(status_code=404, detail="Error 404: Médico no encontrado")
-    cursor.execute(f"""
+    cursor.execute("""
         SELECT 
             t.rut,
             t.nombre,
@@ -116,7 +145,7 @@ def mostrarMedico(rut):
         JOIN 
             medico m ON t.rut = m.rut
         WHERE 
-            t.rut = '{rut}'""")
+            t.rut = %s""", (rut,))
 
     return {"data": cursor.fetchall()}
 
@@ -135,8 +164,8 @@ def establecerDisponibilidad(disponibilidad: Disponibilidad):
 
 #Testeado a
 @app.get("/disponibilidad/{rut}", status_code=status.HTTP_200_OK) # id del médico (supongo que el rut)
-def obtenerHorarioMedico(rut):
-    cursor.execute(f"""
+def obtenerHorarioMedico(rut: str):
+    cursor.execute("""
         SELECT 
             t.rut,
             t.nombre,
@@ -150,7 +179,7 @@ def obtenerHorarioMedico(rut):
         JOIN 
             disponibilidad_medico d ON m.rut = d.rut_medico
         WHERE 
-            t.rut = '{rut}'""")
+            t.rut = %s""", (rut,))
     return {"data": cursor.fetchall()}
     
 
@@ -164,6 +193,7 @@ def notificaciones():
 @app.post("/Login", status_code=status.HTTP_201_CREATED)
 def login():
     return {"Message": "Usuario logeado con éxito"}
+
 
 
 
