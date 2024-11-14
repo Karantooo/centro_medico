@@ -23,7 +23,7 @@ function mostrarMedicos(medicos) {
             <p><strong>Rut:</strong> ${medico.rut}</p>
             <p><strong>Nombre:</strong> ${medico.nombre}</p>
             <p><strong>Especialidad:</strong> ${medico.especialidad}</p>
-            <button onclick="agendarCita('${medico.rut}')">Agendar Cita</button>
+            <button onclick="agendarCita('${medico.rut}')" class="Boton-siguiente">Agendar Cita</button>
         `;
         contenedor.appendChild(cuadro);
     });
@@ -31,7 +31,8 @@ function mostrarMedicos(medicos) {
 
 
 function agendarCita(rut) {
-    alert(`Has seleccionado al médico con RUT: ${rut} para agendar una cita.`);
+    localStorage.setItem('medico', rut);
+    window.location.href = "agendar_cita.html";
 }
 obtenerMedicos();
 
