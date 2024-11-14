@@ -61,8 +61,13 @@ def obtenerCita(id: str):
                    JOIN trabajador t ON m.rut = t.rut 
                    JOIN paciente p ON c.rut_paciente = p.rut	
                    WHERE id_cita = %s""", (id,))
+
+    resultado = cursor.fetchall()
+
+    if not resultado:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cita no encontrada")
     
-    return {"data": cursor.fetchall()}
+    return {"data": resultado}
 
 #Testeado
 @app.get("/Cita", status_code=status.HTTP_200_OK)
@@ -120,6 +125,7 @@ def mostrarMedicos():
             trabajador t
         JOIN 
         medico m ON t.rut = m.rut""")
+
     
     return {"data": cursor.fetchall()}
 
@@ -137,7 +143,14 @@ def mostrarMedicosEspecialidad(especialidad: str):
             medico m ON t.rut = m.rut
         WHERE 
             m.especialidad = %s""", (especialidad,))
-    return {"data": cursor.fetchall()}
+    resultado = cursor.fetchall()
+
+    if not resultado:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No hay medicos disponibles con esta especialidad"
+        )
+    return {"data": resultado}
 
 #Testeado
 @app.get("/busqueda/rut/{rut}", status_code=status.HTTP_200_OK) # {id}: path parameter
@@ -155,8 +168,14 @@ def mostrarMedico(rut: str):
             medico m ON t.rut = m.rut
         WHERE 
             t.rut = %s""", (rut,))
+    resultado = cursor.fetchall()
 
-    return {"data": cursor.fetchall()}
+    if not resultado:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No hay un medico con ese rut"
+        )
+    return {"data": resultado}
 
 
 #User Story: [US 5] Como médico quiero poder establecer mi disponibilidad, para poder mostrar a los pacientes horas disponibles.
@@ -189,7 +208,16 @@ def obtenerHorarioMedico(rut: str):
             disponibilidad_medico d ON m.rut = d.rut_medico
         WHERE 
             t.rut = %s""", (rut,))
-    return {"data": cursor.fetchall()}
+
+    resultado = cursor.fetchall()
+
+    if not resultado:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No hay disponibilidad con ese rut"
+        )
+    return {"data": resultado}
+
     
 
 #User Story: [US 9  ] Como paciente quiero recibir notificaciones de citas agendadas, para evitar asi mi ausencia.
