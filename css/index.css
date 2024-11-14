@@ -160,3 +160,20 @@ footer {
     border-radius: 4px;
     font-weight: bold;
 }
+
+.div-continuar {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px;
+}
+
+.Boton-siguiente {
+    background-color: #4a73f3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+}

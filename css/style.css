@@ -234,3 +234,37 @@ body {
   border: 1px solid black;
 
 }
+
+.contenedor-cuadros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+}
+
+.cuadro-medico {
+  width: 200px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.div-continuar {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px;
+}
+
+.Boton-siguiente {
+  background-color: #4a73f3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}

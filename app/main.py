@@ -3,6 +3,7 @@ from fastapi.params import Body
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException
 from fastapi import status
+##from fastapi.middleware.cors import CORSMiddleware
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from psycopg2 import OperationalError, DatabaseError
@@ -11,6 +12,15 @@ import time
 app = FastAPI()
 
 # port = 5432
+
+# Configuración del middleware CORS
+##app.add_middleware(
+   ## CORSMiddleware,
+    ##allow_origins=["http://127.0.0.1:5500"],  # Permite el origen de Live Server
+   ## allow_credentials=True,
+   ## allow_methods=["*"],
+   ## allow_headers=["*"],
+##)
 
 class Disponibilidad(BaseModel):
     rut_medico: str
