@@ -5,17 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disponibilidad de Horarios</title>
     <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/horario_medico_script.js"></script>
-
 </head>
-<body class = "imagen_fondo">
+<body class="imagen_fondo">
     <section>
         <h1>Seleccione su disponibilidad</h1>
+        <p>
+            Nombre del Médico: <span id="nombreMedico"></span>
+        </p>
     </section>    
+
     <div id="time-grid">
         <!-- JavaScript generará la cuadrícula de bloques aquí -->
     </div>
-    <button class = button>Enviar disponibilidad</button>
+    
+    <p>
+        <button id="enviarDisponibilidadBtn" class="button">Enviar disponibilidad</button>
+    </p>
+    
 
+    <script src="../js/horario_medico_script.js"></script>
 </body>
 </html>

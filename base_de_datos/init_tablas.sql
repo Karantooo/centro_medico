@@ -32,7 +32,6 @@ CREATE TABLE cita (
 	CONSTRAINT estado_cita CHECK (estado IN ('Confirmado', 'No confirmado', 'Cancelada'))
 );
 
-
 CREATE TABLE usuario (
     nombre VARCHAR PRIMARY KEY,
     contrasenia VARCHAR
