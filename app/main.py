@@ -3,7 +3,7 @@ from fastapi.params import Body
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException
 from fastapi import status
-##from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from psycopg2 import OperationalError, DatabaseError
@@ -13,14 +13,13 @@ app = FastAPI()
 
 # port = 5432
 
-# Configuración del middleware CORS
-##app.add_middleware(
-   ## CORSMiddleware,
-    ##allow_origins=["http://127.0.0.1:5500"],  # Permite el origen de Live Server
-   ## allow_credentials=True,
-   ## allow_methods=["*"],
-   ## allow_headers=["*"],
-##)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite todas las fuentes. Cambia esto a ["http://127.0.0.1:5500"] para mayor seguridad.
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class Disponibilidad(BaseModel):
     rut_medico: str
@@ -40,7 +39,7 @@ class ActualizarEstadoCita(BaseModel):
 
 while True:
     try:   
-        conn = psycopg2.connect(host='localhost', database='postgres', user='postgres', password='password123', cursor_factory=RealDictCursor)
+        conn = psycopg2.connect(host='localhost', database='postgres', user='postgres', password=' ', cursor_factory=RealDictCursor)
         cursor = conn.cursor()
         print("Database connection was succesful")
         break
@@ -203,21 +202,3 @@ def notificaciones():
 @app.post("/Login", status_code=status.HTTP_201_CREATED)
 def login():
     return {"Message": "Usuario logeado con éxito"}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

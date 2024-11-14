@@ -31,7 +31,7 @@ function mostrarMedicos(medicos) {
 
 
 function agendarCita(rut) {
-    localStorage.setItem('medico', rut);
+    localStorage.setItem('rut_medico', rut);
     window.location.href = "agendar_cita.html";
 }
 obtenerMedicos();
