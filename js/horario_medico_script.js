@@ -3,26 +3,31 @@ document.addEventListener('DOMContentLoaded', function () {
     const days = ["Lun", "Mar", "Mié", "Jue", "Vie"];
     const hours = Array.from({ length: 10 }, (_, i) => (i + 8) + ":00"); // Horas de 8 a 17
 
-    // Nombre del médico (puede ser dinámico)
-    const rutMedico = "12345678-9"; // Reemplaza con el RUT del médico que deseas obtener
+    // Obtener el RUT del médico del input
+    const nombreMedicoInput = document.getElementById('nombreMedicoInput');
 
-    console.log(`Fetching data for RUT: ${rutMedico}`);
+    // Escuchar cuando el usuario ingrese un RUT y presione Enter
+    nombreMedicoInput.addEventListener('change', function() {
+        const rutMedico = nombreMedicoInput.value;
 
-    fetch(`http://localhost:8000/busqueda/rut/${rutMedico}`)
-        .then(response => {
-            console.log('Response received:', response);
-            return response.json();
-        })
-        .then(data => {
-            console.log('Data received:', data);
-            if (data.data.length > 0) {
-                const medico = data.data[0];
-                document.getElementById('nombreMedico').innerText = medico.nombre;
-            } else {
-                document.getElementById('nombreMedico').innerText = 'Médico no encontrado.';
-            }
-        })
-        .catch(error => console.error('Error:', error));
+        console.log(`Fetching data for RUT: ${rutMedico}`);
+
+        fetch(`http://localhost:8000/busqueda/rut/${rutMedico}`)
+            .then(response => {
+                console.log('Response received:', response);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data received:', data);
+                if (data.data.length > 0) {
+                    const medico = data.data[0];
+                    document.getElementById('nombreMedico').innerText = medico.nombre;
+                } else {
+                    document.getElementById('nombreMedico').innerText = 'Médico no encontrado.';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
 
     // Crear encabezado de días de la semana
     const headerRow = document.createElement('div');
@@ -83,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
             hour: block.dataset.hour
         }));
 
-        const rut_medico = rutMedico; // Puedes obtener este valor de una variable o una fuente externa
+        const rut_medico = nombreMedicoInput.value; // Obtener el RUT del campo de texto
 
         // Convertir la disponibilidad a un formato adecuado para el backend
         const disponibilidadFormatted = disponibilidad.map(slot => {
