@@ -51,7 +51,7 @@ class ActualizarEstadoCita(BaseModel):
 
 while True:
     try:   
-        conn = psycopg2.connect(host='localhost', database='consultorio', user='postgres', password=' ', cursor_factory=RealDictCursor)
+        conn = psycopg2.connect(host='localhost', database='postgres', user='postgres', password='202366', cursor_factory=RealDictCursor)
         cursor = conn.cursor()
         print("Database connection was succesful")
         break
