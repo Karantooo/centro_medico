@@ -34,6 +34,7 @@ CREATE TABLE cita (
 
 CREATE TABLE usuario (
     nombre VARCHAR PRIMARY KEY,
+	mail VARCHAR NOT NULL UNIQUE,
     contrasenia VARCHAR
 );
 

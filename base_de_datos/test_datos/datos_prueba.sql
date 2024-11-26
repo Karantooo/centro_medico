@@ -55,12 +55,14 @@ INSERT INTO cita (rut_doctor, rut_paciente, estado, fecha_inicio, fecha_fin) VAL
 
 -- usuarios trabajadores
 
-INSERT INTO usuario (nombre, contrasenia) VALUES
-('juanperez', 'contraseña123'),
-('mariagomez', 'segura456'),
-('carloslopez', 'clave789'),
-('anamartinez', 'pass1000'),
-('luisfernandez', 'clave2024');
+INSERT INTO usuario (nombre, contrasenia, mail) VALUES
+('juanperez', 'contraseña123', 'juan.perez@gmail.com'),
+('mariagomez', 'segura456', 'maria.gomez@yahoo.com'),
+('carloslopez', 'clave789', 'carlos.lopez@outlook.com'),
+('anamartinez', 'pass1000', 'ana.martinez@protonmail.com'),
+('luisfernandez', 'clave2024', 'luis.fernandez@icloud.com');
+
+
 
 
 INSERT INTO usuario_trabajador (nombre, rut) VALUES
@@ -73,12 +75,14 @@ INSERT INTO usuario_trabajador (nombre, rut) VALUES
 
 -- Usuarios pacientes
 
-INSERT INTO usuario (nombre, contrasenia) VALUES
-('pedrogonzalez', 'contraseñaPedro123'),
-('luciafernandez', 'seguraLucia456'),
-('ricardomartinez', 'claveRicardo789'),
-('elenarodriguez', 'passElena1000'),
-('marcodiaz', 'claveMarco2024');
+INSERT INTO usuario (nombre, contrasenia, mail) VALUES
+('pedrogonzalez', 'contraseñaPedro123', 'pedro.gonzalez@gmail.com'),
+('luciafernandez', 'seguraLucia456', 'lucia.fernandez@hotmail.com'),
+('ricardomartinez', 'claveRicardo789', 'ricardo.martinez@yahoo.com'),
+('elenarodriguez', 'passElena1000', 'elena.rodriguez@protonmail.com'),
+('marcodiaz', 'claveMarco2024', 'marco.diaz@icloud.com');
+
+
 
 
 INSERT INTO usuario_paciente (nombre, rut) VALUES
