@@ -1,0 +1,5 @@
+*.pyc
+**.pyc
+app/venv
+**.env
+app/.env
