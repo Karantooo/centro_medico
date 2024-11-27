@@ -7,9 +7,12 @@ from fastapi.middleware.cors import CORSMiddleware
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from psycopg2 import OperationalError, DatabaseError
+from dotenv import load_dotenv
+import os
 import time
 
 app = FastAPI()
+load_dotenv()
 
 # port = 5432
 
@@ -51,7 +54,13 @@ class ActualizarEstadoCita(BaseModel):
 
 while True:
     try:   
-        conn = psycopg2.connect(host='localhost', database='postgres', user='postgres', password='202366', cursor_factory=RealDictCursor)
+        conn = psycopg2.connect(
+            host = os.getenv('HOST_DB'),
+            database = os.getenv('DATABASE'),
+            user = os.getenv('USER_DB'),
+            password = os.getenv('PASSWORD_DB'),
+            cursor_factory = RealDictCursor
+        )
         cursor = conn.cursor()
         print("Database connection was succesful")
         break
