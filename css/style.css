@@ -1,3 +1,54 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #ffffff;
+  border-bottom: 2px solid #ccc;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  box-sizing: border-box; /* Incluye el padding dentro del ancho total */
+  flex-shrink: 0;
+}
+
+.imagen_fondo{
+  background-image: url("../css/fondo_citas.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+header img {
+  height: 50px;
+}
+
+header button {
+  background-color: #4a73f3;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+header input[type="text"] {
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+footer {
+  background-color: #ffffff;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  border-top: 2px solid #ccc;
+  width: 100%; /* Ocupa todo el ancho */
+  box-sizing: border-box;
+  margin-top: auto;
+  
+}
 
 section {
   margin-bottom: 20px;
@@ -7,57 +58,13 @@ section {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.cuadrado_blanco {
-  width: 500px;
-  height: 300px;
-  background-color: white;
-  border: 1px solid black;
-
-  position: absolute;
-  top: 200px;          /* Distancia desde la parte superior de la ventana */
-  left: 150px;        /* Distancia desde la parte izquierda de la ventana */
-}
-.cuadrado_blanco2 {
-  width: 500px;
-  height: 300px;
-  background-color: white;
-  border: 1px solid black;
-
-  position: absolute;
-  top: 200px;
-  left: 850px;
-}
-.cuadrado_blanco3 {
-  width: 500px;
-  height: 300px;
-  background-color: white;
-  border: 1px solid black;
-
-  position: absolute;
-  top: 600px;
-  left: 150px;
-}
-.cuadrado_blanco4 {
-  width: 500px;
-  height: 300px;
-  background-color: white;
-  border: 1px solid black;
-
-  position: absolute;
-  top: 600px;
-  left: 850px;
-}
 .imagen_fondo{
   background-image: url("../css/fondo_citas.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-.parrafo1 {
-  position: absolute;
-  top: 500px;
-  left: 500px;
-}
+
 .contenedor{
   position: fixed;
   top: 0;
@@ -91,6 +98,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 0;
+  min-height: 100vh;
 }
 
 #time-grid {
@@ -105,14 +113,15 @@ body {
 .row {
   display: contents; /* Para que cada fila use las celdas de la cuadrícula */
 }
-
+/*
 .header-cell {
   font-weight: bold;
   text-align: center;
   padding: 10px;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
-}
+}*/
+
 
 .hour-cell {
   text-align: right;
@@ -134,6 +143,7 @@ body {
 }
 
 .inicio_sesion{
+  display: none;
   width: 500px;
   height: 300px;
   background-color: white;
@@ -142,6 +152,10 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  justify-content: center;
+}
+.inicio_sesion h1{
+  text-align: center;
 }
 .centrar{
   text-align: center;
@@ -268,19 +282,55 @@ body {
 .Boton-siguiente {
   background-color: #4a73f3;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 8px 16px;
+  margin-right: 10px;
   cursor: pointer;
-  position: relative;
+  border-radius: 8px;
 }
 
+#mensaje-error {
+  display: none; /* Oculta el modal por defecto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Cuadro pequeño en el centro */
+.mensaje-error-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 250px; /* Ancho reducido */
+  height: auto; /* Altura automática */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para un efecto flotante */
+}
+
+.mensaje-error-content button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #85C1E9;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+}
 
 #nombreMedicoInput {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 200px; /* Ajusta este valor según lo que necesites */
-  }
-  
+}
+
+.select-tipo_cuenta{
+  text-align: center;
+  border-radius: 10%;
+}
