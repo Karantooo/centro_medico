@@ -1,13 +1,86 @@
-.imagen_fondo{
+/* Fondo general */
+.imagen_fondo {
     background-image: url("../css/fondo_citas.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
 }
 
-.whitebox {
-    width: 500px;
-    height: 300px;
-    background-color: white;
-    border: 1px solid black;
-  }
+section {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Header */
+header {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+}
+
+/* Sección del filtro */
+.filter-section {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.filter-section input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+.filter-section .button {
+    padding: 10px 20px;
+    background-color: #4a73f3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#appointments-list {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px; 
+    padding: 10px;
+}
+
+.appointment {
+    padding: 10px;
+    background-color: #4a73f3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    min-width: 100px; 
+    max-width: 150px; 
+    flex: 0 1 auto; 
+}
+
+.appointment:hover {
+    background-color: #365bbf;
+}
+
+
+.cita-info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: none; 
+}

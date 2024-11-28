@@ -3,16 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disponibilidad de Horarios</title>
+    <title>Agenda de Citas</title>
     <link rel="stylesheet" href="../css/agendamedico.css">
 </head>
 <body class="imagen_fondo">
-    <section>
-        <!-- el campo nombre_medico corresponde al nombre del médico que inició sesión en el sistema -->
-        <h1>Agenda de citas {nombre_medico}</h1>
-        <div class="whitebox">
-        </div>
+    <header>
+        <h1>Agenda de Citas del Médico</h1>
+    </header>
 
-    </section>    
+    <main>
+        <!-- Filtro del Médico -->
+        <section class="filter-section">
+            <h2>Buscar Médico</h2>
+            <label for="rutMedico">R.U.T del Médico:</label>
+            <input type="text" id="rutMedico" placeholder="Ingrese el R.U.T del médico">
+            <button id="buscarCitasBtn" class="button">Buscar</button>
+        </section>
+
+        <!-- Sección de citas -->
+        <section class="appointments-section">
+            <h2>Citas Agendadas</h2>
+            <div id="appointments-list">
+                <!-- Botones de citas -->
+                <button class="appointment" data-info="Cita de Medicina General con Juan Pérez el Miércoles a las 10:00.">Mié 10:00</button>
+                <button class="appointment" data-info="Cita de Pediatría con Ana Gómez el Martes a las 14:00.">Mar 14:00</button>
+                <button class="appointment" data-info="Cita de Cardiología con Carlos Ruiz el Jueves a las 08:00.">Jue 08:00</button>
+            </div>
+            
+            <!-- Contenedor para la información de la cita -->
+            <div id="cita-info" class="cita-info">
+                <p id="info-text"></p>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/agenda_medico.js"></script>
 </body>
 </html>
