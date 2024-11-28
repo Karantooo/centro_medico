@@ -90,7 +90,58 @@ INSERT INTO disponibilidad_medico (rut_medico, inicio_disponibilidad, fin_dispon
 SELECT * FROM cita;
 
 
---- Actualizar confirmacion
-UPDATE cita
-SET estado = 'Confirmado'
-WHERE id_cita = 18;
+
+
+-- Obtener usuario por RUT de paciente
+SELECT u.nombre, u.mail, u.contrasenia, up.rut
+FROM usuario u
+JOIN usuario_paciente up ON u.nombre = up.nombre;
+
+
+
+-- Obtener usuario por RUT de medico o administrativo
+SELECT u.nombre, u.mail, u.contrasenia, up.rut
+FROM usuario u
+JOIN usuario_trabajador up ON u.nombre = up.nombre;
+
+
+-- Obtener mail de usuario paciente por rut
+SELECT u.mail as mail_paciente
+FROM usuario u
+JOIN usuario_paciente up ON u.nombre = up.nombre
+WHERE up.rut = '22334466-0';
+
+-- Obtener todas las citas que un paciente a agendado
+SELECT 
+	cita.estado,
+	cita.fecha_inicio,
+	cita.fecha_fin,
+	trabajador.nombre AS nombre_medico
+FROM cita
+JOIN paciente on cita.rut_paciente = paciente.rut
+JOIN trabajador on cita.rut_doctor = trabajador.rut
+WHERE rut_paciente = '22334466-0'; 
+
+-- Obtener todas las citas que un paciente a agendado
+SELECT 
+	cita.estado,
+	cita.fecha_inicio,
+	cita.fecha_fin,
+	trabajador.nombre AS nombre_medico
+FROM cita
+JOIN paciente on cita.rut_paciente = paciente.rut
+JOIN trabajador on cita.rut_doctor = trabajador.rut
+WHERE rut_paciente = '22334466-0'; 
+
+-- Obtener todas las citas que un paciente a agendado
+SELECT 
+	cita.estado,
+	cita.fecha_inicio,
+	cita.fecha_fin,
+	trabajador.nombre AS nombre_medico
+FROM cita
+JOIN trabajador on cita.rut_doctor = trabajador.rut
+WHERE trabajador.rut = '12345678-9'; 
+
+
+SELECT * FROM medico;
