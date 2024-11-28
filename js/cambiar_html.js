@@ -56,3 +56,7 @@ function mostrar_error(){
 function cerrar_error(){
     document.getElementById('mensaje-error').style.display = 'none';   
 }
+
+function click_logo(){
+    window.location.href = "inicio_sesion.html";
+}
