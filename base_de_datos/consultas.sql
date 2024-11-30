@@ -102,7 +102,9 @@ JOIN usuario_paciente up ON u.nombre = up.nombre;
 -- Obtener usuario por RUT de medico o administrativo
 SELECT u.nombre, u.mail, u.contrasenia, up.rut
 FROM usuario u
-JOIN usuario_trabajador up ON u.nombre = up.nombre;
+JOIN usuario_trabajador up ON u.nombre = up.nombre
+WHERE up.rut = '12345678-9';
+
 
 
 -- Obtener mail de usuario paciente por rut
@@ -122,18 +124,8 @@ JOIN paciente on cita.rut_paciente = paciente.rut
 JOIN trabajador on cita.rut_doctor = trabajador.rut
 WHERE rut_paciente = '22334466-0'; 
 
--- Obtener todas las citas que un paciente a agendado
-SELECT 
-	cita.estado,
-	cita.fecha_inicio,
-	cita.fecha_fin,
-	trabajador.nombre AS nombre_medico
-FROM cita
-JOIN paciente on cita.rut_paciente = paciente.rut
-JOIN trabajador on cita.rut_doctor = trabajador.rut
-WHERE rut_paciente = '22334466-0'; 
 
--- Obtener todas las citas que un paciente a agendado
+-- Obtener todas las citas que tiene un medico en un dia
 SELECT 
 	cita.estado,
 	cita.fecha_inicio,
@@ -141,7 +133,54 @@ SELECT
 	trabajador.nombre AS nombre_medico
 FROM cita
 JOIN trabajador on cita.rut_doctor = trabajador.rut
-WHERE trabajador.rut = '12345678-9'; 
+WHERE trabajador.rut = '12345678-9'
+AND DATE(cita.fecha_inicio) = '2024-11-06 '; 
 
 
-SELECT * FROM medico;
+-- Obtener todas las citas que tiene un medico desde un dia en adelante
+SELECT 
+	cita.estado,
+	cita.fecha_inicio,
+	cita.fecha_fin,
+	trabajador.nombre AS nombre_medico
+FROM cita
+JOIN trabajador on cita.rut_doctor = trabajador.rut
+WHERE trabajador.rut = '12345678-9'
+AND DATE(cita.fecha_inicio) >= '2024-11-06 '; 
+
+
+
+--- Para registrar un paciente
+INSERT INTO paciente (rut, nombre) 
+VALUES ('33445577-9', 'Andrea Castillo');
+
+INSERT INTO usuario (nombre, contrasenia, mail) 
+VALUES ('andreacastillo', 'claveAndrea123', 'andrea.castillo@gmail.com');
+
+INSERT INTO usuario_paciente (nombre, rut) 
+VALUES ('andreacastillo', '33445577-9');
+
+-- Login para usuario paciente
+-- Aqui se obtienen los datos y desde la API se tiene que hacer la verificacion 
+
+SELECT u.nombre, contrasenia, rut 
+FROM usuario u
+JOIN usuario_paciente up ON u.nombre = up.nombre
+WHERE up.rut = '22334466-0';
+
+-- Login para usuario medico
+-- Aqui se obtienen los datos y desde la API se tiene que hacer la verificacion 
+SELECT u.nombre, u.contrasenia, up.rut 
+FROM usuario u
+JOIN usuario_trabajador up ON u.nombre = up.nombre
+JOIN medico m ON up.rut = m.rut
+WHERE up.rut = '12345678-9';
+
+
+-- Login para usuario administrativo
+-- Aqui se obtienen los datos y desde la API se tiene que hacer la verificacion 
+SELECT u.nombre, u.contrasenia, ut.rut 
+FROM usuario u
+JOIN usuario_trabajador ut ON u.nombre = ut.nombre
+JOIN administrativo a ON ut.rut = a.rut
+WHERE ut.rut = '44556677-8';

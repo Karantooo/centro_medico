@@ -53,7 +53,7 @@ INSERT INTO cita (rut_doctor, rut_paciente, estado, fecha_inicio, fecha_fin) VAL
 ('12345678-9', '77665544-8', 'Confirmado', '2024-11-08 13:00:00', '2024-11-08 13:30:00');  -- 30 min
 
 
--- usuarios trabajadores
+-- usuarios medicos
 
 INSERT INTO usuario (nombre, contrasenia, mail) VALUES
 ('juanperez', 'contraseña123', 'juan.perez@gmail.com'),
@@ -71,6 +71,25 @@ INSERT INTO usuario_trabajador (nombre, rut) VALUES
 ('carloslopez', '11223344-5'),
 ('anamartinez', '22334455-6'),
 ('luisfernandez', '33445566-7');
+
+
+-- Usuario administrativos
+
+INSERT INTO usuario (nombre, contrasenia, mail) VALUES
+('sofiarojas', 'claveSofia123', 'sofia.rojas@admin.com'),
+('fernandotorres', 'claveFernando456', 'fernando.torres@admin.com'),
+('valentinasalazar', 'claveValentina789', 'valentina.salazar@admin.com'),
+('diegosilva', 'claveDiego000', 'diego.silva@admin.com'),
+('camilavaldes', 'claveCamila2024', 'camila.valdes@admin.com');
+
+INSERT INTO usuario_trabajador (nombre, rut) VALUES
+('sofiarojas', '44556677-8'),
+('fernandotorres', '55667788-0'),
+('valentinasalazar', '66778899-2'),
+('diegosilva', '77889900-4'),
+('camilavaldes', '88990011-6');
+
+
 
 
 -- Usuarios pacientes

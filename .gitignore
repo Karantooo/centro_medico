@@ -3,3 +3,4 @@
 app/venv
 **.env
 app/.env
+app/.idea
