@@ -1,12 +1,14 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, BackgroundTasks
 from ..models.schemas import Cita, ActualizarEstadoCita
 from ..repositories.citas_repository import (obtener_cita_por_id,
                                              actualizar_estado_cita,
                                              agendar_cita,
                                              obtener_todas_las_citas)
+from ..services.cita_service import schedule_email
 
 
 router = APIRouter()
+
 
 @router.get("/", status_code=status.HTTP_200_OK)
 def obtenerCitas():
@@ -28,7 +30,8 @@ def actualizar_estado_cita_confirmacion(datos: ActualizarEstadoCita):
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
-def agendar_cita_post(cita: Cita):
+def agendar_cita_post(cita: Cita, background_tasks: BackgroundTasks):
     print(cita.rut_doctor)
     agendar_cita(cita)
+    background_tasks.add_task(schedule_email, cita)
     return {"Message": "Cita creada correctamente"}
