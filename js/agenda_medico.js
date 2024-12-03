@@ -1,8 +1,9 @@
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     // Seleccionar todos los botones de citas
     const appointmentButtons = document.querySelectorAll('.appointment');
     const infoContainer = document.getElementById('cita-info');
     const infoText = document.getElementById('info-text');
+
 
     // Agregar evento de clic a cada botón
     appointmentButtons.forEach(button => {
@@ -16,3 +17,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+*/
+
+let rut_medico = null;
+rut_medico = localStorage.getItem("rut_medico");
+if(rut_medico != null){
+    document.getElementById("filter-section").style.display = 'none';
+}
+else{
+    get_horas();
+}
+

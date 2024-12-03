@@ -7,24 +7,26 @@ form.addEventListener('submit', (event) => {
 });
 
 function acceder(){
-    console.log(tipo_cuenta);
     if(tipo_cuenta == "Médico"){
         const rut_medico = document.getElementById("RUT").value;
         localStorage.setItem("rut_medico", rut_medico);
-
+        localStorage.removeItem("rut_paciente");
+        localStorage.removeItem("rut_admin");
         window.location.href = '../website/agenda_medico.html'; //cambia al html de la info de los médicos
     }
     else if(tipo_cuenta == "Paciente"){
         const rut_paciente = document.getElementById("RUT").value;
-        localStorage.setItem("rut_ingresado", rut_paciente);
-
+        localStorage.setItem("rut_paciente", rut_paciente);
+        localStorage.removeItem("rut_medico");
+        localStorage.removeItem("rut_admin");
         window.location.href = '../website/index.html'; //cambia al html de la info de los médicos
     }
     else if(tipo_cuenta == "Admin"){
         const rut_admin = document.getElementById("RUT").value;
-        localStorage.setItem("rut_ingresado", rut_admin);
-
-        window.location.href = '../website/index.html'; //cambia al html de la info de los médicos
+        localStorage.setItem("rut_admin", rut_admin);
+        localStorage.removeItem("rut_paciente");
+        localStorage.removeItem("rut_medico");
+        window.location.href = '../website/agenda_medico.html'; //cambia al html de la info de los médicos
     }
 }
 

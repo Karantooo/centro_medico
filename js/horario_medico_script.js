@@ -142,3 +142,8 @@ document.addEventListener('DOMContentLoaded', function () {
         return `${String(nextHour).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
     }
 });
+
+
+function volver(){
+    window.location.href = "agenda_medico.html";
+}

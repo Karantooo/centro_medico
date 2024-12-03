@@ -13,11 +13,12 @@
 
     <main>
         <!-- Filtro del Médico -->
-        <section class="filter-section">
+        <section class="filter-section" id="filter-section">
             <h2>Buscar Médico</h2>
             <label for="rutMedico">R.U.T del Médico:</label>
             <input type="text" id="rutMedico" placeholder="Ingrese el R.U.T del médico">
             <button id="buscarCitasBtn" class="button">Buscar</button>
+            <h1 id="rutMedico2"></h1>
         </section>
 
         <!-- Sección de citas -->
@@ -28,6 +29,7 @@
                 <button class="appointment" data-info="Cita de Medicina General con Juan Pérez el Miércoles a las 10:00.">Mié 10:00</button>
                 <button class="appointment" data-info="Cita de Pediatría con Ana Gómez el Martes a las 14:00.">Mar 14:00</button>
                 <button class="appointment" data-info="Cita de Cardiología con Carlos Ruiz el Jueves a las 08:00.">Jue 08:00</button>
+                <a class="appointment" href="horario_medico.html" style="margin-left: auto; text-decoration: none;">Modificar horario</a>
             </div>
             
             <!-- Contenedor para la información de la cita -->
