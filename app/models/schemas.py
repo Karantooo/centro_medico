@@ -25,5 +25,5 @@ class Usuario(BaseModel):
 
 
 class Login(BaseModel):
-    password: str
-    correo: str
+    rut: str
+    contrasenia: str

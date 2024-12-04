@@ -1,27 +1,21 @@
 from fastapi import APIRouter, HTTPException, status
 from ..repositories.usuario_repository import (obtener_user_rut_admin,
-                                                obtener_user_rut_paciente, obtener_correo_paciente)
+                                               obtener_user_rut_paciente,
+                                               obtener_correo_paciente,
+                                               obtener_user_mail_paciente)
 from ..models.schemas import Login
 
 router = APIRouter()
 
 
-@router.get("/paciente/{rut}", status_code=status.HTTP_200_OK)
-def obtener_usuario_rut_paciente(rut: str):
-    resultado = obtener_user_rut_paciente(rut)
+@router.post("/paciente_login", status_code=status.HTTP_200_OK)
+def obtener_usuario_rut_paciente(login: Login):
+    resultado = obtener_user_rut_paciente(login.rut)
     if not resultado:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cita no encontrada")
-    return {"data": resultado}
-
-
-# @router.post("/paciente_login", status_code=status.HTTP_200_OK)
-# def obtener_usuario_rut_paciente(login: Login):
-#     if
-#
-#
-#     if not resultado:
-#         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cita no encontrada")
-#     return {"data": resultado}
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cuenta no encontrada")
+    if login.contrasenia != resultado["contrasenia"]:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Contraseña incorrecta")
+    return {"Resultado": "Se logro login"}
 
 
 @router.get("/admin/{rut}", status_code=status.HTTP_200_OK)

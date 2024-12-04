@@ -7,11 +7,20 @@ import psycopg2
 def obtener_user_rut_paciente(rut: str):
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute("""SELECT u.nombre, u.mail, u.contrasenia, up.rut
-                   FROM usuario u
-                   JOIN usuario_paciente up ON u.nombre = up.nombre""")
-    
-    return cursor.fetchall()
+    cursor.execute("""
+            SELECT contrasenia
+            FROM usuario
+            JOIN usuario_paciente ON usuario.nombre = usuario_paciente.nombre
+            WHERE rut = %s;
+    """, (rut,))
+
+    return cursor.fetchone()
+
+
+def obtener_user_mail_paciente(mail: str):
+    conn = get_db()
+    cursor = conn.cursor()
+
 
 
 def obtener_user_rut_admin(rut: str):
