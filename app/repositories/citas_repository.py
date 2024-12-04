@@ -3,6 +3,7 @@ from psycopg2 import OperationalError, DatabaseError
 from fastapi import HTTPException
 import psycopg2
 
+
 def obtener_todas_las_citas():
     conn = get_db()
     cursor = conn.cursor()
@@ -40,7 +41,6 @@ def obtener_mail_paciente(rut: str):
     return cursor.fetchone()
 
 
-
 def actualizar_estado_cita(datos):
     conn = get_db()
     cursor = conn.cursor()
@@ -76,20 +76,37 @@ def agendar_cita(cita):
         conn.rollback()
         raise HTTPException(status_code=400, detail="Error en la operación: " + str(e))
 
+
 def obtener_citas_con_rut_paciente(rut: str):
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute("""SELECT 
-	cita.estado, cita.fecha_inicio, cita.fecha_fin, trabajador.nombre AS nombre_medico
-    FROM cita
-    JOIN paciente on cita.rut_paciente = paciente.rut
-    JOIN trabajador on cita.rut_doctor = trabajador.rut
-    WHERE rut_paciente = '%s'""", rut)
+
+    cursor.execute("""
+                SELECT 
+                cita.estado, cita.fecha_inicio, cita.fecha_fin, trabajador.nombre AS nombre_medico
+                FROM cita
+                JOIN paciente on cita.rut_paciente = paciente.rut
+                JOIN trabajador on cita.rut_doctor = trabajador.rut
+                WHERE rut_paciente = %s""",
+    (rut,))
     return cursor.fetchall()
+
 
 def obtener_citas_con_rut_medico(rut: str):
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute() #Consulta
+    cursor.execute("""
+            SELECT 
+            cita.estado,
+            cita.fecha_inicio,
+            cita.fecha_fin,
+            trabajador.nombre AS nombre_medico,
+            paciente.nombre AS nombre_paciente
+            
+            FROM cita
+            JOIN trabajador ON cita.rut_doctor = trabajador.rut
+            JOIN paciente ON paciente.rut = rut_paciente
+            WHERE trabajador.rut = %s; 
+    """, (rut, ))
 
     return cursor.fetchall()

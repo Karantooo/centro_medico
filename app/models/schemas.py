@@ -22,3 +22,8 @@ class Usuario(BaseModel):
     nombre: str
     password: str
     correo: str
+
+
+class Login(BaseModel):
+    password: str
+    correo: str

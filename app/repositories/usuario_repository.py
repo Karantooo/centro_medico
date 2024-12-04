@@ -3,6 +3,7 @@ from psycopg2 import OperationalError, DatabaseError
 from fastapi import HTTPException
 import psycopg2
 
+
 def obtener_user_rut_paciente(rut: str):
     conn = get_db()
     cursor = conn.cursor()
@@ -21,6 +22,7 @@ def obtener_user_rut_admin(rut: str):
                    JOIN usuario_trabajador up ON u.nombre = up.nombre""")
 
     return cursor.fetchall()
+
 
 def obtener_correo_paciente(rut: str):
     conn = get_db()
