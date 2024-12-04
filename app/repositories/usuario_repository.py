@@ -22,15 +22,18 @@ def obtener_user_mail_paciente(mail: str):
     cursor = conn.cursor()
 
 
-
-def obtener_user_rut_admin(rut: str):
+def obtener_user_rut_medico(rut: str):
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute("""SELECT u.nombre, u.mail, u.contrasenia, up.rut
-                   FROM usuario u
-                   JOIN usuario_trabajador up ON u.nombre = up.nombre""")
+    cursor.execute("""
+            SELECT u.contrasenia
+            FROM usuario u
+            JOIN usuario_trabajador up ON u.nombre = up.nombre
+            JOIN medico m ON up.rut = m.rut
+            WHERE up.rut = %s;
+    """, (rut,))
 
-    return cursor.fetchall()
+    return cursor.fetchone()
 
 
 def obtener_correo_paciente(rut: str):
