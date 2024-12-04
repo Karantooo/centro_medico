@@ -1,4 +1,4 @@
-const rut = "66778800-3"
+const rut = "11122334-5";
 async function Obtener_datos(){
     try {
 
@@ -37,6 +37,15 @@ async function Obtener_datos(){
                 fila.insertCell().textContent = cita.estado;
                 fila.insertCell().textContent = Adaptar_fecha(cita.fecha_inicio);
                 fila.insertCell().textContent = Adaptar_fecha(cita.fecha_fin);
+                if (cita.estado === "Confirmado"){
+                    fila.classList.add("fila-verde");
+                }
+                else if(cita.estado === "No confirmado"){
+                    fila.classList.add("fila-amarilla");
+                }
+                else if(cita.estado === "Cancelada"){
+                    fila.classList.add("fila-roja");
+                }
             }
         });
 

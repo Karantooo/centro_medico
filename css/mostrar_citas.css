@@ -4,3 +4,36 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+table{
+    font-size: 14px;
+    table-layout: fixed;
+    border: 2px solid black;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+thead{
+    background: rgba(255,255,255);
+}
+th{
+    padding: 20px 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+td{
+    padding: 15px;
+    border-bottom: solid 2px rgba(0,0,0);
+}
+.fila-verde {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.fila-roja {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.fila-amarilla {
+    background-color: #fff3cd;
+    color: #856404;
+}
