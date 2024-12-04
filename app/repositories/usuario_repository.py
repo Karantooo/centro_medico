@@ -36,6 +36,20 @@ def obtener_user_rut_medico(rut: str):
     return cursor.fetchone()
 
 
+def obtener_user_rut_admin(rut: str):
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT u.contrasenia
+        FROM usuario u
+        JOIN usuario_trabajador ut ON u.nombre = ut.nombre
+        JOIN administrativo a ON ut.rut = a.rut
+        WHERE ut.rut = %s;
+    """, (rut,))
+
+    return cursor.fetchone()
+
+
 def obtener_correo_paciente(rut: str):
     conn = get_db()
     cursor = conn.cursor()
