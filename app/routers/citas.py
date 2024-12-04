@@ -38,3 +38,17 @@ def agendar_cita_post(cita: Cita, background_tasks: BackgroundTasks):
     mail = obtener_mail_paciente(cita.rut_paciente)['mail']
     background_tasks.add_task(schedule_email, cita, mail)
     return {"Message": "Cita creada correctamente"}
+
+@router.get("/paciente/{rut}")
+def obtener_citas_rut_paciente(rut: str):
+    resultado = obtener_citas_con_rut_paciente(rut)
+    if not resultado:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cita no encontrada")
+    return {"data": resultado}
+
+@router.get("/medico/{rut}")
+def obtener_citas_rut_medico(rut: str):
+    resultado = obtener_citas_con_rut_medico(rut)
+    if not resultado:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cita no encontrada")
+    return {"data": resultado}

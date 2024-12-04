@@ -15,3 +15,10 @@ class Cita(BaseModel):
 class ActualizarEstadoCita(BaseModel):
     id_cita: int
     estado: str
+
+
+class Usuario(BaseModel):
+    rut_paciente: str
+    nombre: str
+    password: str
+    correo: str

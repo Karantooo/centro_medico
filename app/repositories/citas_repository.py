@@ -75,3 +75,21 @@ def agendar_cita(cita):
     except (DatabaseError, OperationalError) as e:
         conn.rollback()
         raise HTTPException(status_code=400, detail="Error en la operación: " + str(e))
+
+def obtener_citas_con_rut_paciente(rut: str):
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute("""SELECT 
+	cita.estado, cita.fecha_inicio, cita.fecha_fin, trabajador.nombre AS nombre_medico
+    FROM cita
+    JOIN paciente on cita.rut_paciente = paciente.rut
+    JOIN trabajador on cita.rut_doctor = trabajador.rut
+    WHERE rut_paciente = '%s'""", rut)
+    return cursor.fetchall()
+
+def obtener_citas_con_rut_medico(rut: str):
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute() #Consulta
+
+    return cursor.fetchall()

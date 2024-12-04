@@ -92,14 +92,15 @@ SELECT * FROM cita;
 
 
 
--- Obtener usuario por RUT de paciente
+-- Obtener usuario por RUT de paciente -Listo
 SELECT u.nombre, u.mail, u.contrasenia, up.rut
 FROM usuario u
-JOIN usuario_paciente up ON u.nombre = up.nombre;
+JOIN usuario_paciente up ON u.nombre = up.nombre
+WHERE u.rut = '12345678-9';
 
 
 
--- Obtener usuario por RUT de medico o administrativo
+-- Obtener usuario por RUT de medico o administrativo -Listo
 SELECT u.nombre, u.mail, u.contrasenia, up.rut
 FROM usuario u
 JOIN usuario_trabajador up ON u.nombre = up.nombre
@@ -107,13 +108,13 @@ WHERE up.rut = '12345678-9';
 
 
 
--- Obtener mail de usuario paciente por rut
+-- Obtener mail de usuario paciente por rut - Listo
 SELECT u.mail as mail_paciente
 FROM usuario u
 JOIN usuario_paciente up ON u.nombre = up.nombre
 WHERE up.rut = '22334466-0';
 
--- Obtener todas las citas que un paciente a agendado
+-- Obtener todas las citas que un paciente a agendado _ listo
 SELECT 
 	cita.estado,
 	cita.fecha_inicio,
@@ -150,7 +151,7 @@ AND DATE(cita.fecha_inicio) >= '2024-11-06 ';
 
 
 
---- Para registrar un paciente
+--- Para registrar un paciente _ listo
 INSERT INTO paciente (rut, nombre) 
 VALUES ('33445577-9', 'Andrea Castillo');
 
