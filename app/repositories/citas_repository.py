@@ -9,6 +9,7 @@ def obtener_todas_las_citas():
     cursor.execute("SELECT * FROM cita")
     return {"data": cursor.fetchall()}
 
+
 def obtener_cita_por_id(id: str):
     conn = get_db()
     cursor = conn.cursor()
@@ -22,6 +23,22 @@ def obtener_cita_por_id(id: str):
                    JOIN paciente p ON c.rut_paciente = p.rut	
                    WHERE id_cita = %s""", (id,))
     return cursor.fetchall()
+
+
+def obtener_mail_paciente(rut: str):
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT mail
+        FROM cita
+        JOIN paciente ON cita.rut_paciente = paciente.rut
+        JOIN usuario_paciente ON usuario_paciente.rut = paciente.rut
+        JOIN usuario ON usuario.nombre = usuario_paciente.nombre
+        WHERE rut_paciente = %s;
+    """,
+                   (rut,))
+    return cursor.fetchone()
+
 
 
 def actualizar_estado_cita(datos):

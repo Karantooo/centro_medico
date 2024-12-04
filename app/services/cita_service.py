@@ -16,7 +16,8 @@ scheduler = BackgroundScheduler()
 scheduler.start()
 identifier = 0
 
-async def schedule_email(cita: Cita):
+
+async def schedule_email(cita: Cita, mail: str):
     global identifier
 
     fecha_cita = cita.fecha_inicio
@@ -35,7 +36,7 @@ async def schedule_email(cita: Cita):
     # Se genera contenido del mail
     msg = EmailMessage()
     msg["From"] = os.getenv("SMTP_USER")
-    msg["To"] = "ctomasalvarezn@gmail.com"
+    msg["To"] = mail
     msg["Subject"] = "Recordatorio de su cita"
     msg.set_content("Estimado paciente, este es un recordatorio de su cita programada para el {fecha_cita}".format(fecha_cita=fecha_cita))
 
