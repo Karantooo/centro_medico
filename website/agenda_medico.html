@@ -18,23 +18,18 @@
             <label for="rutMedico">R.U.T del Médico:</label>
             <input type="text" id="rutMedico" placeholder="Ingrese el R.U.T del médico">
             <button id="buscarCitasBtn" class="button">Buscar</button>
-            <h1 id="rutMedico2"></h1>
         </section>
 
         <!-- Sección de citas -->
         <section class="appointments-section">
             <h2>Citas Agendadas</h2>
             <div id="appointments-list">
-                <!-- Botones de citas -->
-                <button class="appointment" data-info="Cita de Medicina General con Juan Pérez el Miércoles a las 10:00.">Mié 10:00</button>
-                <button class="appointment" data-info="Cita de Pediatría con Ana Gómez el Martes a las 14:00.">Mar 14:00</button>
-                <button class="appointment" data-info="Cita de Cardiología con Carlos Ruiz el Jueves a las 08:00.">Jue 08:00</button>
-                <a class="appointment" href="horario_medico.html" style="margin-left: auto; text-decoration: none;">Modificar horario</a>
+                <!-- Aquí se generarán los botones dinámicamente -->
             </div>
-            
-            <!-- Contenedor para la información de la cita -->
-            <div id="cita-info" class="cita-info">
-                <p id="info-text"></p>
+            <div id="appointment-details" style="display: none; margin-top: 20px; border: 1px solid #ccc; padding: 10px;">
+                <!-- Aquí se mostrarán los detalles de la cita -->
+                <h3>Detalles de la Cita</h3>
+                <p id="appointment-info"></p>
             </div>
         </section>
     </main>

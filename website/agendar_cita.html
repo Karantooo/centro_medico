@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <title>Agendar hora</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/agendar_cita.js"></script>
-
+    
 </head>
-<body class = "imagen_fondo">
+<body class="imagen_fondo">
     <div class="contenedor">
-        <img src="../css/logo_udec.png" alt="Error" class ="logo_udec">
+        <img src="../css/logo_udec.png" alt="Error" class="logo_udec">
     </div>
-    <div class="contenedor2 letra">
-        <p> Seleccione una fecha en el calendario y luego una hora</p>
-    </div>
-
-    <div id ="horas" class="contenedor_horas"></div>
-    <label class="calendario">
+    <h1>Seleccione una fecha en el calendario y luego una hora</h1>
+    <div class="calendario">
         <input type="date" id="fecha" onchange="seleccionarFecha()">
-    </label>
+    </div>
+    <div id="horas" class="contenedor_horas"></div>
 </body>
-</html> 
+</html>
