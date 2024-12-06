@@ -27,27 +27,73 @@ async function Obtener_datos(){
         //Ahora se añade el cuerpo
         const cuerpo = tabla.createTBody();
         console.log(citas.id_cita);
-        citasData.forEach((cita) => {
 
-            if(String(cita.rut_paciente).trim() === String(rut).trim()){
-                const fila = cuerpo.insertRow();
-                fila.insertCell().textContent = cita.id_cita;
-                fila.insertCell().textContent = cita.rut_doctor;
-                fila.insertCell().textContent = cita.rut_paciente;
-                fila.insertCell().textContent = cita.estado;
-                fila.insertCell().textContent = Adaptar_fecha(cita.fecha_inicio);
-                fila.insertCell().textContent = Adaptar_fecha(cita.fecha_fin);
-                if (cita.estado === "Confirmado"){
-                    fila.classList.add("fila-verde");
-                }
-                else if(cita.estado === "No confirmado"){
-                    fila.classList.add("fila-amarilla");
-                }
-                else if(cita.estado === "Cancelada"){
-                    fila.classList.add("fila-roja");
-                }
-            }
-        });
+citasData.forEach((cita) => {
+
+    if (String(cita.rut_paciente).trim() === String(rut).trim()) {
+        const fila = cuerpo.insertRow();
+
+        // Agregar datos a las celdas
+        fila.insertCell().textContent = cita.id_cita;
+        fila.insertCell().textContent = cita.rut_doctor;
+        fila.insertCell().textContent = cita.rut_paciente;
+        fila.insertCell().textContent = cita.estado;
+        fila.insertCell().textContent = Adaptar_fecha(cita.fecha_inicio);
+        fila.insertCell().textContent = Adaptar_fecha(cita.fecha_fin);
+
+        // Aplicar estilos según el estado
+        if (cita.estado === "Confirmado") {
+            fila.classList.add("fila-verde");
+        } else if (cita.estado === "No confirmado") {
+            fila.classList.add("fila-amarilla");
+        } else if (cita.estado === "Cancelada") {
+            fila.classList.add("fila-roja");
+        }
+
+        // Crear una celda para los botones
+        const celdaBotones = fila.insertCell();
+
+        // Botón Confirmar
+        const botonConfirmar = document.createElement("button");
+        botonConfirmar.textContent = "Confirmar";
+        botonConfirmar.classList.add("boton-confirmar"); // Clase para estilos CSS
+        botonConfirmar.onclick = () => confirmarCita(cita.id_cita); // Función para confirmar cita
+        celdaBotones.appendChild(botonConfirmar);
+
+        // Botón Cancelar
+        const botonCancelar = document.createElement("button");
+        botonCancelar.textContent = "Cancelar";
+        botonCancelar.classList.add("boton-cancelar"); // Clase para estilos CSS
+        botonCancelar.onclick = () => cancelarCita(cita.id_cita); // Función para cancelar cita
+        celdaBotones.appendChild(botonCancelar);
+    }
+});
+
+async function confirmarCita(idCita) {
+    try {
+        const respuesta = await fetch(`http://127.0.0.1:8000/Cita/${idCita}/confirmar`, { method: 'POST' });
+        if (!respuesta.ok) {
+            throw new Error(`Error al confirmar la cita: ${respuesta.status}`);
+        }
+        alert("Cita confirmada exitosamente");
+        location.reload(); // Recarga la página para actualizar el estado
+    } catch (error) {
+        console.error("Error al confirmar la cita", error);
+    }
+}
+
+async function cancelarCita(idCita) {
+    try {
+        const respuesta = await fetch(`http://127.0.0.1:8000/Cita/${idCita}/cancelar`, { method: 'POST' });
+        if (!respuesta.ok) {
+            throw new Error(`Error al cancelar la cita: ${respuesta.status}`);
+        }
+        alert("Cita cancelada exitosamente");
+        location.reload(); // Recarga la página para actualizar el estado
+    } catch (error) {
+        console.error("Error al cancelar la cita", error);
+    }
+}
 
         contenedor.appendChild(tabla);
     }

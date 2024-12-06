@@ -37,3 +37,30 @@ td{
     background-color: #fff3cd;
     color: #856404;
 }
+
+.boton-confirmar {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.boton-cancelar {
+    background-color: #f44336; /* Rojo */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.boton-confirmar:hover {
+    background-color: #45a049;
+}
+
+.boton-cancelar:hover {
+    background-color: #e53935;
+}
