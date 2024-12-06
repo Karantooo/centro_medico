@@ -71,25 +71,44 @@ citasData.forEach((cita) => {
 
 async function confirmarCita(idCita) {
     try {
-        const respuesta = await fetch(`http://127.0.0.1:8000/Cita/${idCita}/confirmar`, { method: 'POST' });
+        const respuesta = await fetch("http://127.0.0.1:8000/Cita/", {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id_cita: idCita, // ID de la cita que deseas confirmar
+                estado: "Confirmado" // El nuevo estado de la cita
+            }),
+        });
         if (!respuesta.ok) {
             throw new Error(`Error al confirmar la cita: ${respuesta.status}`);
         }
         alert("Cita confirmada exitosamente");
-        location.reload(); // Recarga la página para actualizar el estado
+        location.reload(); // Recarga la página para actualizar la tabla
     } catch (error) {
         console.error("Error al confirmar la cita", error);
     }
 }
 
+
 async function cancelarCita(idCita) {
     try {
-        const respuesta = await fetch(`http://127.0.0.1:8000/Cita/${idCita}/cancelar`, { method: 'POST' });
+        const respuesta = await fetch("http://127.0.0.1:8000/Cita/", {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id_cita: idCita,
+                estado: "Cancelada"
+            }),
+        });
         if (!respuesta.ok) {
             throw new Error(`Error al cancelar la cita: ${respuesta.status}`);
         }
         alert("Cita cancelada exitosamente");
-        location.reload(); // Recarga la página para actualizar el estado
+        location.reload(); // Refresca la página para reflejar los cambios
     } catch (error) {
         console.error("Error al cancelar la cita", error);
     }
