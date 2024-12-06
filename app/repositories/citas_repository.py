@@ -2,6 +2,7 @@ from ..database.connection import get_db
 from psycopg2 import OperationalError, DatabaseError
 from fastapi import HTTPException
 import psycopg2
+from datetime import date
 
 
 def obtener_todas_las_citas():
@@ -95,6 +96,9 @@ def obtener_citas_con_rut_paciente(rut: str):
 def obtener_citas_con_rut_medico(rut: str):
     conn = get_db()
     cursor = conn.cursor()
+
+    fecha_actual = date.today()
+    print(fecha_actual)
     cursor.execute("""
             SELECT 
             cita.estado,
@@ -106,7 +110,8 @@ def obtener_citas_con_rut_medico(rut: str):
             FROM cita
             JOIN trabajador ON cita.rut_doctor = trabajador.rut
             JOIN paciente ON paciente.rut = rut_paciente
-            WHERE trabajador.rut = %s; 
-    """, (rut, ))
+            WHERE trabajador.rut = %s
+            AND cita.fecha_inicio >= %s; 
+    """, (rut, fecha_actual))
 
     return cursor.fetchall()
