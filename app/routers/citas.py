@@ -25,6 +25,7 @@ def obtener_citas_rut_medico(rut: str):
     resultado = obtener_citas_con_rut_medico(rut)
     if not resultado:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cita no encontrada")
+
     return {"data": resultado}
 
 
