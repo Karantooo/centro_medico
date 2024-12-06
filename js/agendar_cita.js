@@ -44,7 +44,7 @@ function seleccionarFecha() {
 // Función para agendar una cita
 async function agendarCita(hora) {
     const fechaSeleccionada = document.getElementById("fecha").value;
-    const rut_paciente = localStorage.getItem('rutPaciente');
+    const rut_paciente = localStorage.getItem('rut_paciente');
     let fechaInicio = new Date(`${fechaSeleccionada}T${hora}:00`);
     fechaInicio.setHours(fechaInicio.getHours() - 3);  // Crear la fecha completa para la cita
     let fechaFin = new Date(fechaInicio);  // La cita dura 1 hora

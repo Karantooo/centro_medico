@@ -45,6 +45,6 @@ def actualizar_estado_cita_confirmacion(datos: ActualizarEstadoCita):
 def agendar_cita_post(cita: Cita, background_tasks: BackgroundTasks):
     print(cita.rut_doctor)
     agendar_cita(cita)
-    mail = obtener_mail_paciente(cita.rut_paciente)['mail']
-    background_tasks.add_task(schedule_email, cita, mail)
+    #mail = obtener_mail_paciente(cita.rut_paciente)['mail']
+    #background_tasks.add_task(schedule_email, cita, mail)
     return {"Message": "Cita creada correctamente"}
