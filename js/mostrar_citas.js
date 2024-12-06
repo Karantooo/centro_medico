@@ -1,4 +1,4 @@
-const rut = "11122334-5";
+const rut = localStorage.getItem('rut_paciente');
 async function Obtener_datos(){
     try {
 
