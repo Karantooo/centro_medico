@@ -12,7 +12,6 @@ async function acceder(){
         const contrasena = document.getElementById("contraseña").value;
         const resultado = await verificar_datos_medico(rut_medico,contrasena);
         if(resultado === 0){
-            alert("ACCEDIDO COMO MEDICO");
             localStorage.setItem("rut_medico", rut_medico);
             localStorage.removeItem("rut_paciente");
             localStorage.removeItem("rut_admin");
@@ -42,7 +41,6 @@ async function acceder(){
         const contrasena = document.getElementById("contraseña").value;
         const resultado = await verificar_datos_admin(rut_admin,contrasena);
         if(resultado === 0){
-            alert("ACCEDIDO COMO ADMIN");
             localStorage.setItem("rut_admin", rut_admin);
             localStorage.removeItem("rut_paciente");
             localStorage.removeItem("rut_medico");

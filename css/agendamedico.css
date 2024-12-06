@@ -84,3 +84,18 @@ header {
     border-radius: 8px;
     display: none; 
 }
+
+.horario{
+    padding: 10px;
+    background-color: #4a73f3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    min-width: 100px; 
+    max-width: 150px; 
+    flex: 0 1 auto; 
+    margin-left: 0px;
+}
